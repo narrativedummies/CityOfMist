@@ -1,0 +1,228 @@
+/* Определяем шрифт с помощью @font-face */
+/* @font-face {
+    font-family: 'Sodra';
+    src: url('fonts/Sodra-Regular.ttf') format('truetype');
+    font-weight: bold;
+} */
+
+@font-face {
+    font-family: 'Sodra';
+    src: url('fonts/ArsenalSC-Regular.ttf') format('truetype');
+    /* font-weight: bold; */
+    font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body.day-theme {
+  background-color: transparent;
+  color: black;
+}
+
+body.night-theme {
+  background-color: #292929;
+  color: white;
+}
+
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
+  /* font-family: 'Kaph', sans-serif; /* Используем наш шрифт, запасной вариант sans-serif */ */
+}
+
+.container {
+  display: flex;
+  height: 100%;
+}
+
+.section {
+  flex: 1;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.left, .right, .center {
+  width: 100%;
+}
+
+.left input, .left button, .left label, select {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.button-panel {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.button-panel button {
+  flex: 1;
+  margin: 0 2px;
+}
+
+.right #chat {
+  height: 100%;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+} 
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Для абсолютного позиционирования overlay */
+}
+
+#overlay {
+  position: absolute; /* Для корректного позиционирования заглушки */
+  width: 500px;
+  height: 168px;
+  background-image: url('imgs/CoM_logo.png');
+  background-size: contain;  
+  background-repeat: no-repeat;  
+  background-position: center;   
+  opacity: 1;
+  transition: opacity 1.0s ease-in-out; /* Анимация для затухания overlay */
+  z-index: 2; /* overlay всегда поверх content-box */
+}
+
+.content-box {
+  position: relative; /* Для корректного позиционирования заглушки */
+  width: 500px;
+  height: 168px;
+  background-size: cover;
+  background-position: center;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); */
+  /* border-radius: 10px; */
+  background-color: rgba(255, 255, 255, 0.8);
+  font-family: 'Open Sans', sans-serif;
+  opacity: 0; /* Изначально скрыт */
+  transition: opacity 1.0s ease-in-out, background-image 0.5s ease-in-out; /* Анимация для появления content-box */
+  z-index: 1; /* content-box под overlay */
+}
+
+.name-style {
+  color: #EAEAEA;
+  font-size: 36px;
+  margin-bottom: 4px;
+  font-family: 'Sodra', sans-serif;
+}
+
+.dice-style {
+  color: #92A5B7;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-family: 'Sodra', sans-serif;
+  white-space: pre-wrap;
+}
+
+.resultContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center; 
+}
+
+.total-style {
+  display: inline-block;
+  float: left;
+  color: #C7F7CD;
+  font-size: 32px;
+  font-family: 'Sodra', sans-serif;
+}
+
+.result-style {
+  display: inline-block;
+  float: right;
+  color: #C7F7CD;
+  font-size: 32px;
+  font-family: 'Sodra', sans-serif;
+}
+
+.text-style {
+  color: #292929;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.results {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  transition: opacity 0.5s ease; /* Плавная анимация для opacity */
+}
+
+.hidden {
+  opacity: 0; /* Прозрачность 0, чтобы скрыть элемент */
+}
+
+.info {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  transition: opacity 0.5s ease; /* Плавная анимация для изменения opacity */
+  opacity: 1; /* Начальное значение */
+}
+
+.info.hidden {
+    opacity: 0; /* Скрытие блока */
+}
+
+.image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+label {
+  display: block;
+  font-size: 1.1rem;
+}
+
+input, button, select {
+  font-size: 1rem; /* Размер шрифта относительно базового */
+  padding: 0.5em; /* Отступы относительно размера шрифта */
+  margin-bottom: 1em;
+}
+
+#userImage {
+  transition: opacity 0.5s ease; /* Плавная анимация для изменения opacity */
+  opacity: 1; /* Начальное значение */
+}
+
+#userImage.hidden {
+  opacity: 0; /* Скрытие изображения */
+}
+
+.item_divider {
+  height: 1px;
+  width: 100%;
+  margin-bottom: 2px;
+  background: #92A5B7;
+}
+
+

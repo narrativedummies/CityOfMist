@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City of Mist Roller</title>
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@300;600&display=swap">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button id="themeToggle">Switch to Day Theme</button>
+    <br><br>
+    <div class="container">
+        <!-- Первый блок -->
+        <div class="section left">
+            <label for="username">Имя:</label>
+            <select id="username">        
+            </select>
+
+            <label for="photoUrl">Фото:</label>
+            <input type="text" id="photoUrl" disabled> 
+            <label for="modifier">Модификатор</label>
+            <input type="number" id="modifier" value="0" min="-10" max="10">
+
+            <div class="button-panel">
+                <button onclick="setModifier(-3)">-5</button>
+                <button onclick="setModifier(-3)">-4</button>
+                <button onclick="setModifier(-3)">-3</button>
+                <button onclick="setModifier(-2)">-2</button>
+                <button onclick="setModifier(-1)">-1</button>
+                <button onclick="setModifier(0)">0</button>
+                <button onclick="setModifier(1)">1</button>
+                <button onclick="setModifier(2)">2</button>
+                <button onclick="setModifier(3)">3</button>
+                <button onclick="setModifier(4)">4</button>
+                <button onclick="setModifier(5)">5</button>
+            </div>
+
+            <button id="rollButton" onclick="rollDice()">Roll 2d6</button>
+
+            <label>Результат: <span id="result"></span></label>
+        </div>
+
+        <!-- Второй блок -->
+        <div class="section center">
+            <div id="overlay" class="overlay"></div>
+            <div class="content-box">
+                <div class="results">
+                    <div class="info">
+                        <label id="nameLabel" class="name-style"></label>
+                        <label id="diceLabel" class="dice-style"></label>
+                        <div class="item_divider"></div>
+                        <div>
+                            <div class="label-container">
+                                <label id="totalLabel" class="total-style"></label>
+                                <label id="resultLabel" class="result-style"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="image">
+                        <img id="userImage" src="imgs/roller_bg.png" alt="imgs/roller_bg.png">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Третий блок -->
+        <div class="section right">
+            <div id="chat">
+                <!-- Чат -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
